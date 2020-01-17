@@ -1,0 +1,376 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang16393{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.17134}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang9 #include<stdio.h>\par
+#include<stdlib.h>\par
+#include "personImp.h"\par
+#include "personInt.h"\par
+void main()\par
+\{\par
+\tab listADT *l,*l2;\par
+\tab person p;\par
+\tab Ratio r1;\par
+\tab l=initialise(l);\par
+\tab int i,j,n,ch,choice;\par
+\tab\par
+\tab\par
+\tab do\par
+\tab\{\par
+\tab\tab printf("Choose from the following menu\\n\\n1.InsertFront\\n2.InsertEnd\\n3.Insert using PIN\\n4.List Senior person\\n5.List according to address\\n6.Display sorted List\\n7.to display the list of person\\nRatio of adult person\\n\\n");\par
+\tab\tab scanf("%d",&ch);\par
+\tab\tab switch(ch)\par
+\tab\tab\{\par
+\tab\tab\tab case 1:\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab\par
+\tab\tab\tab\tab printf("Enter the number of terms to be inserted at front : ");\par
+\tab\tab\tab\tab scanf("%d",&n);\par
+\tab\tab\tab\tab for(i=0;i<n;i++)\par
+\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab printf("\\n\\nEnter the name of the person : ");\par
+\tab\tab\tab\tab scanf("%s",p.name);\par
+\tab\tab\tab\tab printf("Enter the age of the person : ");\par
+\tab\tab\tab\tab scanf("%d",&p.age);\par
+\tab\tab\tab\tab printf("Enter the sex of the person");\par
+\tab\tab\tab\tab scanf("%c",&p.sex);\par
+\tab\tab\tab\tab printf("Enter the address");\par
+\tab\tab\tab\tab scanf("%s",p.address);\par
+\tab\tab\tab\tab p.pin=rand()%100+1;\par
+\tab\tab\tab\tab insertFront(l,p);\par
+\tab\tab\tab\tab p.pin=0;\par
+\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab break;\par
+\tab\tab\tab\}\par
+\tab\tab\tab case 2 :\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab printf("Enter the number of terms to be inserted at the end : ");\par
+\tab\tab\tab\tab scanf("%d",&n);\par
+\tab\tab\tab\tab for(i=0;i<n;i++)\par
+\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab printf("\\n\\nEnter the name of the person : ");\par
+\tab\tab\tab\tab scanf("%s",p.name);\par
+\tab\tab\tab\tab printf("Enter the age of the person : ");\par
+\tab\tab\tab\tab scanf("%d",&p.age);\par
+\tab\tab\tab\tab printf("Enter the sex of the person");\par
+\tab\tab\tab\tab scanf("%c",&p.sex);\par
+\tab\tab\tab\tab printf("Enter the address");\par
+\tab\tab\tab\tab scanf("%s",p.address);\par
+\tab\tab\tab\tab p.pin=rand()%100+1;\par
+\tab\tab\tab\tab insertEnd(l,p);\par
+\tab\tab\tab\tab p.pin=0;\par
+\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab break;\par
+\tab\tab\tab\}\par
+\tab\tab\tab case 3 :\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab printf("\\n\\nEnter the name of the person : ");\par
+\tab\tab\tab\tab scanf("%s",p.name);\par
+\tab\tab\tab\tab printf("Enter the age of the person : ");\par
+\tab\tab\tab\tab scanf("%d",&p.age);\par
+\tab\tab\tab\tab printf("Enter the sex of the person");\par
+\tab\tab\tab\tab scanf("%c",&p.sex);\par
+\tab\tab\tab\tab printf("Enter the address");\par
+\tab\tab\tab\tab scanf("%s",p.address);\par
+\tab\tab\tab\tab printf("Enter the pin");\par
+\tab\tab\tab\tab scanf("%d",pin);\par
+\tab\tab\tab\tab p.pin=pin;\par
+\tab\tab\tab\tab insertPIN(l,p,pin);\par
+\tab\tab\tab\tab break;\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab case 4:\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab printf("\\n\\nTHE SENIOR PERSON IN THIS DATABASE ARE\\n\\n");\par
+\tab\tab\tab\tab ListADT *sp;\par
+\tab\tab\tab\tab sp=seniorPerson(l);\par
+\tab\tab\tab\tab display(sp);\par
+\tab\tab\tab\tab break;\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab case 5:\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab printf("\\n\\nEnter the location to be searched\\n\\n");\par
+\tab\tab\tab\tab scanf("%s",loc);\par
+\tab\tab\tab\tab ListADT *sl;\par
+\tab\tab\tab\tab sl=locatePerson(l);\par
+\tab\tab\tab\tab display(sl);\par
+\tab\tab\tab\tab break;\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab case 6:\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab sort(l);\par
+\tab\tab\tab\tab break;\par
+\tab\tab\tab\}\par
+\tab\tab\tab case 7:\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab display1(l);\par
+\tab\tab\tab\tab break;\par
+\tab\tab\tab\}\par
+\tab\tab\tab case 8:\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab printf("THE RATIO OF MALE TO FEMALE IS:");\par
+\tab\tab\tab\tab r1=adultPerson(l);\par
+\tab\tab\tab\tab printf("%d : %d",r1->male,r1->female);\par
+\tab\tab\tab\tab break;\par
+\tab\tab\tab\}\par
+\tab\tab\tab defalut:\par
+\tab\tab\tab\tab printf("Enter a valid choice!")\par
+\tab\tab\}\par
+\tab\tab\par
+\tab\tab printf("Do you want to continue\\n\\n1.YES\\n2.NO\\n\\n");\par
+\tab\tab scanf("%d",&choice);\par
+\tab\}while(choice==1);\par
+\}\par
+*************************************************************************\par
+#include<stdlib.h>\par
+#include<string.h>\par
+\par
+typedef struct\par
+\{\par
+\tab char name[20];\par
+\tab int age;\par
+\tab char address[250];\par
+\tab char sex;\par
+\tab int pin;\par
+\}person;\par
+\par
+typedef struct listADT\par
+\{\par
+\tab struct listADT *lptr;\par
+\tab struct listADT *rptr;\par
+\tab person p;\par
+\}listADT;\par
+\par
+typedef struct \par
+\{\par
+\tab int male;\par
+\tab int female;\par
+\}Ratio;\par
+\par
+listADT* initialise(listADT *l)\par
+\{\par
+\tab l=(listADT*)malloc(sizeof(listADT));\par
+\tab l->rptr=NULL;\par
+\tab l->lptr=NULL;\par
+\tab l->p.age=0;\par
+\tab l->p.pin=0;\par
+\tab return l;\par
+\}\par
+\par
+\par
+void insertFront(listADT *l,person p)\par
+\{\par
+\par
+\tab listADT *temp,*t1;\par
+\tab temp=(listADT*)malloc(sizeof(listADT));\par
+\tab temp->p=p;\par
+\tab t1=l->rptr;\par
+\tab if(l->rptr==NULL)\par
+\tab\{\par
+\tab\tab temp->rptr=l->rptr;\par
+\tab\tab l->rptr=temp;\par
+\tab\tab temp->lptr=l;\par
+\tab\}\par
+\tab else\par
+\tab\{\par
+\tab\tab temp->rptr=l->rptr;\par
+\tab\tab l->rptr=temp;\par
+\tab\tab temp->lptr=l;\par
+\tab\tab t1->lptr=temp;\par
+\tab\}\par
+\tab\par
+\}\par
+\par
+void insertend(listADT *l,person p)\par
+\{\par
+\tab listADT *t, *newnode;\par
+\tab t=l; \par
+\tab newnode=(listADT*)malloc(sizeof(listADT));\par
+\tab\par
+\tab if(l==NULL)\par
+\tab\{\par
+\tab newnode->p=p;\par
+\tab l=newnode;\par
+\tab\}\par
+\tab else\par
+\tab\{\par
+\tab newnode->p=p;\par
+\tab while(t->rptr!=NULL)\par
+\tab\{\par
+\tab t=t->rptr;\par
+\tab\}\par
+\tab t->rptr=newnode;\par
+\tab newnode->lptr=t;\par
+\tab\}\par
+\}\par
+\par
+void insertPIN(listADT *l,person p,int pin)\par
+\{  \par
+\tab\par
+   listADT *temp,*ptr;\par
+   ptr=(listADT*)malloc(sizeof(listADT));\par
+   sort(l);\par
+   \par
+   if(ptr == NULL)  \par
+   \{  \par
+       printf("\\n OVERFLOW");  \par
+   \}  \par
+   else  \par
+   \{   \par
+       temp=l;  \par
+       while(temp->p.pin<pin)  \par
+       \{  \par
+           temp = temp->rptr;  \par
+           if(temp == NULL)  \par
+           \{  \par
+               printf("\\ncan't insert\\n");  \par
+               return;  \par
+           \}  \par
+       \}  \par
+       ptr->p =p; \par
+\tab    ptr->p.pin=pin;\par
+       ptr->rptr = temp->rptr;  \par
+       ptr -> lptr = temp;  \par
+       temp->rptr = ptr;  \par
+       temp->rptr->lptr=ptr;  \par
+       printf("Node Inserted\\n");  \par
+\}\par
+\par
+listADT* seniorPerson(listADT l,int n)\par
+\{\par
+\tab listADT list,*list1,*temp;\tab\tab\tab\tab\tab\par
+\tab list1=initialize(&list);\par
+temp=(listADT*)malloc(sizeof(listADT));\par
+\tab temp=&l;\par
+\tab int i;\par
+\tab\par
+\tab for(i=0;i<n;i++)\par
+\tab\tab\{\par
+\tab\tab if(temp->p.age>60) \{\tab\par
+\tab\tab\tab list1->p = temp->p;\par
+\tab\tab\tab temp=temp->rptr;\par
+\tab\tab\tab list1=list1->rptr;\par
+\tab\tab\}\par
+\tab return &list1;\tab\tab\tab\tab\tab\par
+\}\par
+\par
+listADT* locatePerson(listADT l,char s[],int n)\par
+\{\par
+\tab ListADT list,*list1,*temp;\tab\tab\tab\tab\tab\par
+\tab list1=initialize(&list);\par
+\tab temp=l;\par
+\tab int i;\par
+\tab\par
+\tab for(i=0;i<n;i++)\par
+\tab\tab\{\par
+\tab\tab if(strcmp(temp->p.address,s)==0) \tab\tab\tab\{\tab\par
+\tab\tab\tab list1->p = temp->p;\par
+\tab\tab\tab temp=temp->rptr;\par
+\tab\tab\tab list1=list1->rptr;\par
+return &list1;\tab\tab\par
+\tab\tab\}\par
+\tab\tab\tab\tab\par
+\}\par
+\par
+\}\par
+void display1(listADT *l)\par
+\{\par
+\tab listADT *temp,*t1;\par
+\tab temp=(listADT*)malloc(sizeof(listADT));\tab\par
+\tab t1=(listADT*)malloc(sizeof(listADT));\tab\par
+\tab temp=l->rptr;\par
+\tab while(temp!=NULL)\par
+\tab\{\par
+\tab\tab printf("\\nNAME : %s\\n",temp->p.name);\par
+\tab\tab printf("\\nAGE : %d\\n",temp->p.age);\par
+\tab\tab printf("\\nSEX : %c\\n",temp->p.sex);\par
+\tab\tab printf("\\nADDRESS : %s\\n",temp->p.address);\par
+\tab\tab printf("\\nPIN : %d\\n",temp->p.pin);\par
+\tab\tab t1=temp;\par
+\tab\tab temp=temp->rptr;\par
+\tab\}\par
+\tab printf("reverse order ");\par
+\tab\par
+\tab while(t1!=l)\par
+\tab\{\par
+\tab\tab printf("\\nNAME : %s\\n",temp->p.name);\par
+\tab\tab printf("\\nAGE : %d\\n",temp->p.age);\par
+\tab\tab printf("\\nSEX : %c\\n",temp->p.sex);\par
+\tab\tab printf("\\nADDRESS : %s\\n",temp->p.address);\par
+\tab\tab printf("\\nPIN : %d\\n",temp->p.pin);\tab\tab\tab\par
+\tab\tab t1=t1->lptr;\par
+\tab\par
+\tab\}\par
+\}\par
+\par
+void display(listADT *l)\par
+\{\par
+\tab listADT *temp,*t1;\par
+\tab temp=(listADT*)malloc(sizeof(listADT));\tab\par
+\tab t1=(listADT*)malloc(sizeof(listADT));\tab\par
+\tab temp=l->rptr;\par
+\tab while(temp!=NULL)\par
+\tab\{\par
+\tab\tab printf("\\nNAME : %s\\n",temp->p.name);\par
+\tab\tab printf("\\nAGE : %d\\n",temp->p.age);\par
+\tab\tab printf("\\nSEX : %c\\n",temp->p.sex);\par
+\tab\tab printf("\\nADDRESS : %s\\n",temp->p.address);\par
+\tab\tab printf("\\nPIN : %d\\n",temp->p.pin);\par
+\tab\tab t1=temp;\par
+\tab\tab temp=temp->rptr;\par
+\tab\}\par
+\}\par
+\par
+void sort(listADT *l)\par
+\{\par
+\tab listADT *ptr,*ptr1;\par
+\tab int max;\par
+\tab ptr=l->rptr;\par
+\tab ptr1=ptr->lptr;\par
+\tab while(ptr!=NULL)\par
+\tab\{\par
+\tab\tab ptr1=ptr->lptr;\par
+\tab\tab if(ptr->p.age<ptr1->p.age)\par
+\tab\tab\{\par
+\tab\tab\tab max=ptr1->p.age;\par
+\tab\tab\tab ptr1->p.age=ptr->p.age;\par
+\tab\tab\tab ptr->p.age=max;\par
+\tab\tab\tab ptr=ptr->rptr;\par
+\tab\tab\}\par
+\tab\}\par
+\tab display(l);\par
+\}\par
+Ratio adultperson(listADT *l)\par
+\{\par
+ int m=0,f=0;\par
+ listADT *temp;\par
+\par
+ temp=l;\par
+ if(temp->p.sex=='F')\par
+ \{\par
+ \tab  f++;\par
+\tab  temp=temp->rptr;\par
+ \}\par
+ else\par
+ \{\par
+ \tab  m++;\par
+\tab  temp=temp->rptr;\par
+ \}\par
+ Ratio *ra;\par
+ ra->male=m;\par
+ ra->female=f;\par
+ return ra;\par
+\}\par
+***************************************************************************\par
+listADT* initialise(listADT *l);\par
+void insertFront(listADT *l,person p);\par
+void insertend(listADT *l,person p);\par
+void insertPIN(listADT *l,person p,int pin);\par
+listADT seniorPerson(listADT l);\par
+listADT locatePerson(listADT l,char s[]);\par
+void display1(listADT *l);\par
+void display(listADT *l);\par
+void sort(listADT *l);\par
+Ratio adultperson(listADT *l);\par
+}
+ 
